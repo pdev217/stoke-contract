@@ -1,0 +1,32 @@
+{
+  "name": "test",
+  "version": "0.1.0",
+  "private": true,
+  "main": "hardhat.config.js",
+  "scripts": {
+    "clean": "npx hardhat clean",
+    "chain": "npx hardhat node",
+    "deploy": "npx hardhat run --network localhost scripts/deploy.js",
+    "deploy:rinkeby": "npx hardhat run --network rinkeby scripts/deploy.js",
+    "deploy:ropsten": "npx hardhat run --network ropsten scripts/deploy.js",
+    "deploy:matic": "npx hardhat run --network matic scripts/deploy.js",
+    "test": "npx hardhat test"
+  },
+  "devDependencies": {
+    "@nomiclabs/hardhat-ethers": "^2.0.5",
+    "@nomiclabs/hardhat-etherscan": "^3.0.3",
+    "@nomiclabs/hardhat-waffle": "^2.0.3",
+    "@openzeppelin/contracts": "^4.5.0",
+    "@openzeppelin/hardhat-upgrades": "^1.17.0",
+    "chai": "^4.3.6",
+    "dotenv": "^16.0.0",
+    "hardhat-gas-reporter": "^1.0.8",
+    "solidity-coverage": "^0.7.20",
+    "web3-eth-abi": "^1.7.3",
+    "@babel/core": "^7.17.5",
+    "babel-loader": "^8.2.3",
+    "eslint": "8.11.0",
+    "ethereum-waffle": "^3.4.4",
+    "hardhat": "^2.9.3"
+  }
+}
