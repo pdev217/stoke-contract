@@ -20,20 +20,20 @@ async function main() {
   const Token = await ethers.getContractFactory("WETH9");
   const tokenContract = await Token.deploy();
 
-  const offer = await ethers.getContractFactory("OfferSystem");
-  const offerSystem = await Token.deploy();
+  // const offer = await ethers.getContractFactory("OfferSystem");
+  // const offerSystem = await Token.deploy();
 
   const lazy = await ethers.getContractFactory("LazyNFT");
   const lazyminter = await lazy.deploy();
 
   await stoke.deployed();
   await tokenContract.deployed();
-  await offerSystem.deployed();
+  // await offerSystem.deployed();
   await lazyminter.deployed();
 
   console.log("StokeNFT deployed to:", stoke.address);
   console.log("WEH9 deployed to:", tokenContract.address);
-  console.log("offer system deployed to:", offerSystem.address);
+  // console.log("offer system deployed to:", offerSystem.address);
   console.log("lazy minter deployed to:", lazyminter.address);
 }
 

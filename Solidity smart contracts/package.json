@@ -3,7 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "main": "hardhat.config.js",
+  "directories": {
+    "test": "test"
+  },
   "scripts": {
+    "hardhat": "hardhat -v",
     "clean": "npx hardhat clean",
     "chain": "npx hardhat node",
     "deploy": "npx hardhat run --network localhost scripts/deploy.js",

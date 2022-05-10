@@ -11,55 +11,60 @@ import "hardhat/console.sol";
 contract StokeNFT is ERC721URIStorage {
     using Counters for Counters.Counter;
     Counters.Counter private _tokenCounter;
+
     constructor() ERC721("StokeNFT", "NFT") {}
 
     struct Token {
         uint256 tokenId;
     }
-    
+
     mapping(uint256 => Token) public tokens;
 
-     function totalSupply() public view returns (uint256) {
+    function totalSupply() public view returns (uint256) {
         return _tokenCounter.current();
     }
 
-    function createToken(uint256 _tokenId, address recipient, string memory tokenURI) public returns (uint256) {
+    function createToken(
+        uint256 _tokenId,
+        address recipient,
+        string memory tokenURI
+    ) public returns (uint256) {
         _tokenCounter.increment();
 
         uint256 id = _tokenCounter.current();
 
         bool IsExist = _exists(_tokenId);
 
-        if(IsExist) {
+        if (IsExist) {
             address nftOwner = ownerOf(_tokenId);
             _transfer(nftOwner, recipient, _tokenId);
-        }else {
+        } else {
             _safeMint(recipient, _tokenId);
             _setTokenURI(_tokenId, tokenURI);
 
-            tokens[id] = Token(
-                _tokenId
-            );
+            tokens[id] = Token(_tokenId);
         }
 
         return _tokenId;
     }
 
-    function createOrder(string memory _tokenURI, uint256 _tokenId, address marketContract) public {
+    function createOrder(
+        string memory _tokenURI,
+        uint256 _tokenId,
+        address marketContract
+    ) public {
         _tokenCounter.increment();
         uint256 id = _tokenCounter.current();
 
         _safeMint(msg.sender, _tokenId);
         _setTokenURI(_tokenId, _tokenURI);
 
-        tokens[id] = Token(
-            _tokenId
-        );
+        tokens[id] = Token(_tokenId);
 
         _approve(marketContract, _tokenId);
     }
 
-    function IsExistToken(uint256 _tokenId) public view returns(bool){
+    function IsExistToken(uint256 _tokenId) public view returns (bool) {
         bool state = _exists(_tokenId);
 
         return state;

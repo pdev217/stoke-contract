@@ -1,10 +1,12 @@
 {
 	"folders": [
 		{
-			"path": "Solana smart contracts"
+			"name": "Solidity smart contracts",
+			"path": "Solidity smart contracts"
 		},
 		{
-			"path": "Solidity smart contracts"
+			"name": "Solana smart contracts",
+			"path": "Solana smart contracts"
 		}
 	],
 	"settings": {}

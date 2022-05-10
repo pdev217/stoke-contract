@@ -1,5 +1,6 @@
 require("dotenv").config();
 
+require('@nomiclabs/hardhat-ethers');
 require("@nomiclabs/hardhat-etherscan");
 require("@nomiclabs/hardhat-waffle");
 require("hardhat-gas-reporter");
@@ -14,7 +15,7 @@ task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
   const accounts = await hre.ethers.getSigners();
 
   for (const account of accounts) {
-    console.log(account.address);
+    console.log("account", account.address);
   }
 });
 // You need to export an object to set up your config
@@ -131,17 +132,20 @@ module.exports = {
     },
     ropsten: {
       url: "https://eth-ropsten.alchemyapi.io/v2/0B51t_8NmdFD3MVHsdMddCGt0Zjwfo7y",
-      accounts: ['95cd7ac56a15b471c1d479b6f109881606affab88d03c95cbc44076c7018f88a']
-    },
-    matic: {
-      url: "https://rpc-mumbai.maticvigil.com",
-      accounts: ["95cd7ac56a15b471c1d479b6f109881606affab88d03c95cbc44076c7018f88a"]
+      accounts: process.env.TEST_PRIVATE_KEY !== undefined ? [process.env.TEST_PRIVATE_KEY] : [],
     },
     rinkeby: {
       url: "https://rinkeby.infura.io/v3/a5b51678f5c248c5af6c10dc7c5501ea",
-      accounts: ['95cd7ac56a15b471c1d479b6f109881606affab88d03c95cbc44076c7018f88a'],
-      gas: 2100000,
-      gasPrice: 8000000000
+      accounts: process.env.TEST_PRIVATE_KEY !== undefined ? [process.env.TEST_PRIVATE_KEY] : [],
+    },
+    polygon: {
+      url: "",
+      accounts: []
+    },
+    polygonMumbai: {
+      url: "https://rpc-mumbai.maticvigil.com",
+      accounts: process.env.TEST_PRIVATE_KEY !== undefined ? [process.env.TEST_PRIVATE_KEY] : [],
+      timeout: 600000
     },
     bsctest: {
       url: process.env.BSCTEST_URL || "",
@@ -169,6 +173,9 @@ module.exports = {
     currency: "USD",
   },
   etherscan: {
-    apiKey: process.env.ETHERSCAN_API_KEY,
+    apiKey: {
+      rinkeby: process.env.ETHERSCAN_API_KEY,
+      polygonMumbai: process.env.POYGONSCAN_API_KEY,
+    }
   }
 };
