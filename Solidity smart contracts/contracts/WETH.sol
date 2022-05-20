@@ -39,7 +39,7 @@ contract WETH9 {
     constructor() public {
         uint chainId;
         assembly {
-            chainId := chainid
+            chainId := chainId
         }
 
         DOMAIN_SEPARATOR = keccak256(

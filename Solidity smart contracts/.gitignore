@@ -52,5 +52,5 @@ yarn.lock
 package-lock.json
 
 # cache
-cache/**
-artifacts/**
+cache
+artifacts
